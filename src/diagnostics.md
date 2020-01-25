@@ -278,7 +278,18 @@ If you need a combination of options that's not supported by the
 - Add a suitable reference, typically an RFC or tracking issue. Go ahead
   and include the full URL, sort items in ascending order of issue numbers.
 - Later, change lint to error.
-- Eventually, remove lint.
+- By default, `declare_lint!` is recommended for use to declare the `Lint`.
+
+  After at least one release cycle, and depending on how things have progressed,
+  consider using `declare_unsuppressable_lint!` instead.
+  This will turn the minimum level into `Warn` and make sure that `--cap-lints allow`
+  won't suppress the lint when it arises in a dependency of the root crate being compiled.
+
+  Please consult the documentation of `declare_unsuppressable_lint!`
+  for more information about it.
+- Later, change lint to error, but we recommend that you first use
+   `declare_unsuppressable_lint!` during at least one release cycle.
+- Eventually, remove the lint.
 
 ### Lint Groups
 
